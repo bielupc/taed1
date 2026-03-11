@@ -33,6 +33,7 @@ let previewedButton = null; // Track which button is currently showing preview (
 let mobileHintShown = false; // Track if hint has been shown
 
 // DOM variables
+const screenPreIntro = document.getElementById('screen-pre-intro');
 const screenIntro = document.getElementById('screen-intro');
 const screenGame = document.getElementById('screen-game');
 const screenEnd = document.getElementById('screen-end');
@@ -49,7 +50,7 @@ const labelLeft = document.getElementById('label-left');
 const labelRight = document.getElementById('label-right');
 
 function showScreen(el) {
-    [screenIntro, screenGame, screenEnd].forEach(s => {
+    [screenPreIntro, screenIntro, screenGame, screenEnd].forEach(s => {
         s.classList.remove('active');
         s.classList.add('hidden');
     });
@@ -347,7 +348,7 @@ async function saveResultsToSupabase(failReason) {
             console.error('Error saving to Supabase:', error);
             return false;
         }
-        
+
         console.log('✓ Results saved successfully');
         return true;
     } catch (err) {
@@ -358,7 +359,7 @@ async function saveResultsToSupabase(failReason) {
 
 function endGame(whichBar, level) {
     gameOver = true;
-    
+
     // Determine fail reason and save to Supabase
     let failReason;
     if (whichBar === 'SUCCESS') {
@@ -366,10 +367,10 @@ function endGame(whichBar, level) {
     } else {
         failReason = `${whichBar}_${level}`; // e.g., "pacients_low", "metges_high"
     }
-    
+
     // Save results to Supabase (async, doesn't block UI)
     saveResultsToSupabase(failReason);
-    
+
     let data = { headline: "Crisi General", reason: "Destituït" };
 
     // Obtenir resultat final de data.js segons el "GameOver" donat
@@ -433,4 +434,8 @@ document.getElementById('btn-start').addEventListener('click', () => {
     updateBars();
     renderCard();
     showScreen(screenGame);
+});
+
+document.getElementById('btn-to-intro')?.addEventListener('click', () => {
+    showScreen(screenIntro);
 });

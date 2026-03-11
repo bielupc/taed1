@@ -190,7 +190,7 @@ var gameData = {
         "SUCCESS": {
             "win": {
                 "headline": "Jubilació d'Honor i Mandat Complet",
-                "reason": "Has aconseguit completar el teu mandat de 16 anys sense que el sistema col·lapsi. El bé sovint es troba en els punts intermedis, no pas en els extrems, i amb el teu govern has establert les bases de la IA sanitaria a Catalunya."
+                "reason": "Has aconseguit completar el teu mandat de 16 anys sense que el sistema col·lapsi. El bé sovint es troba en els punts intermitjos, podent establir les bases de la IA sanitaria a Catalunya."
             }
         }
     }

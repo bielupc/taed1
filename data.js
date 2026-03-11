@@ -13,15 +13,15 @@ var gameData = {
             "character": "Directora de Dades del CTTI",
             "text": "Tenim milers d'històries clíniques per entrenar la IA. Si les anonimitzem amb el rigor que demana l'Agència de Protecció de Dades, la IA perdrà un 20% d'eficàcia i ens costarà una fortuna. Què fem?",
             "leftLabel": "Privacitat total",
-            "rightLabel": "Prioritzar la salut",
+            "rightLabel": "Prioritzar l'eficiència",
             "leftImpact": { "pacients": 12, "metges": -10, "pressupost": -15, "mediAmbient": -5 },
             "rightImpact": { "pacients": -15, "metges": 12, "pressupost": 10, "mediAmbient": 0 },
             "logText": "Anonimització vs Eficiència"
         },
         {
             "character": "Conselleria d'Acció Climàtica",
-            "text": "L'entrenament de la vostra IA consumeix milions de litres d'aigua per refrigerar servidors en plena alerta per sequera. Heu d'aturar-los o prohibirem el reg als pagesos.",
-            "leftLabel": "Aturar la tecnologia",
+            "text": "L'entrenament de la vostra IA consumeix milions de litres d'aigua per refrigerar servidors en plena alerta per sequera.",
+            "leftLabel": "Aturar l'entrenament",
             "rightLabel": "Seguir endavant",
             "leftImpact": { "pacients": -5, "metges": -10, "pressupost": 8, "mediAmbient": 15 },
             "rightImpact": { "pacients": 5, "metges": 8, "pressupost": -10, "mediAmbient": -20 },
@@ -29,8 +29,8 @@ var gameData = {
         },
         {
             "character": "Cap de Dermatologia",
-            "text": "La nostra IA és excel·lent pel 80% de la població catalana, però no té gaires dades d'efectes a la pell en minories ètniques. Entrenar-la amb dades externes ens portarà 2 anys de retard i milions d'euros. Esperem que sigui perfecta per a tothom?",
-            "leftLabel": "Esperar a la perfecció",
+            "text": "La nostra IA és excel·lent pel 80% de la població catalana, però no té gaires dades sobre pells de minories ètniques. Entrenar-la amb dades externes ens portarà 2 anys de retard i milions d'euros. Esperem que sigui perfecta per a tothom?",
+            "leftLabel": "Esperar a incloure a tothom",
             "rightLabel": "Desplegar-la ja",
             "leftImpact": { "pacients": 10, "metges": -12, "pressupost": -15, "mediAmbient": 5 },
             "rightImpact": { "pacients": -18, "metges": 10, "pressupost": 8, "mediAmbient": -5 },
@@ -38,8 +38,8 @@ var gameData = {
         },
         {
             "character": "CEO de Global-AI Health",
-            "text": "Conseller/a, us oferim la nostra infraestructura de diagnòstic gratis durant 3 anys. A canvi, les dades dels pacients catalans passaran pels nostres servidors als EUA per 'millorar el motor'. Acceptem el regal?",
-            "leftLabel": "Acceptar el regal",
+            "text": "Conseller/a, us oferim la nostra infraestructura de diagnòstic gratis durant 3 anys. A canvi, les dades dels pacients catalans passaran pels nostres servidors als EUA per 'millorar el motor'.",
+            "leftLabel": "Acceptar l'oferta",
             "rightLabel": "Desenvolupament local",
             "leftImpact": { "pacients": -12, "metges": 10, "pressupost": 20, "mediAmbient": -8 },
             "rightImpact": { "pacients": 12, "metges": -8, "pressupost": -22, "mediAmbient": 5 },
@@ -47,7 +47,7 @@ var gameData = {
         },
         {
             "character": "Associació de Pacients",
-            "text": "L'algoritme de Salut Mental envia avisos de 'risc de depressió' als mòbils abans de passar pel metge. Això crea angoixa. Hem de filtrar aquests avisos?",
+            "text": "L'algoritme de Salut Mental envia avisos de 'risc de depressió' als mòbils abans de parlar amb un metge. Això crea angoixa. Hem de filtrar aquests avisos?",
             "leftLabel": "Filtrar per humans",
             "rightLabel": "Transparència total",
             "leftImpact": { "pacients": 8, "metges": 12, "pressupost": -5, "mediAmbient": 5 },
@@ -55,8 +55,8 @@ var gameData = {
             "logText": "Protecció vs Transparència en salut mental"
         },
         {
-            "character": "Sindicat d'Infermeres",
-            "text": "Voleu instal·lar tòtems de 'Triatge Intel·ligent' a les entrades: la IA decideix qui passa i qui va a casa segons els símptomes. Això estalvia cues, però els pacients grans se senten abandonats.",
+            "character": "Gestors mèdics dels CAPs",
+            "text": "Voleu instal·lar triatge intel·ligent a les entrades? la IA decideix qui passa i qui va a casa segons els símptomes. Això estalvia cues, però alguns pacients se senten abandonats.",
             "leftLabel": "Prioritzar tracte humà",
             "rightLabel": "Desplegar triatge IA",
             "leftImpact": { "pacients": 12, "metges": 15, "pressupost": -15, "mediAmbient": 5 },
@@ -94,13 +94,13 @@ var gameData = {
             "character": "Mare d'un nen malalt",
             "text": "Conseller/a, la IA és eficient amb malalties comunes, però pel meu fill amb una malaltia rara el sistema 'no té dades'. Invertiu 5 milions en un model específic?",
             "leftLabel": "Invertir en minories",
-            "rightLabel": "Eficiència agregada",
+            "rightLabel": "Invertir en altres camps",
             "leftImpact": { "pacients": 12, "metges": 8, "pressupost": -15, "mediAmbient": -5 },
             "rightImpact": { "pacients": -10, "metges": -8, "pressupost": 8, "mediAmbient": 5 },
             "logText": "Malalties rares vs Benefici majoritari"
         },
         {
-            "character": "Directora de Residència",
+            "character": "Directora de Residència de gent gran",
             "text": "No trobem personal per atendre els avis. Us proposem robots amb IA que parlen i fan companyia. Estalvieu diners, però les famílies ho veuen fred i deshumanitzat.",
             "leftLabel": "Robots assistencials",
             "rightLabel": "Exigir personal humà",
@@ -109,7 +109,7 @@ var gameData = {
             "logText": "Robots de companyia a residències"
         },
         {
-            "character": "Degà de Medicina",
+            "character": "Degà de Medicina UAB",
             "text": "Els nous metges depenen tant de la IA que ja no saben diagnosticar sense una pantalla. Prohibim l'ús de la IA als residents de primer any per forçar l'aprenentatge tradicional?",
             "leftLabel": "Prohibir IA novells",
             "rightLabel": "Integració total",
@@ -150,11 +150,11 @@ var gameData = {
         "pacients": {
             "low": {
                 "headline": "Pacients sense confiaça, model rebutjat",
-                "reason": "Els ciutadans han perdut tota la confiança en la sanitat algorítmica. Entre decisions automatitzades i errors difícils d'explicar, la sanitat algorítmica ha acabat fent més por que servei. Et fan fora després d'una allau de queixes."
+                "reason": "Els ciutadans han perdut tota la confiança en la sanitat algorítmica. Entre decisions automatitzades i errors difícils d'explicar, la sanitat algorítmica ha acabat fent més por que servei. Et fan fora després d'una onada de queixes."
             },
             "high": {
-                "headline": "Excés de protecció, sistema bloquejat",
-                "reason": "Has protegit tantissim els pacients fins a extrems inversemblants que no es pot creuar ni un sol tipus de raonament a cap IA. Atur d'innovació ineficaç absolut."
+                "headline": "Excés de protecció, sistema no entrenat",
+                "reason": "Has protegit tantissim els pacients fins a extrems que no s'ha pogut ni entrenar el model."
             }
         },
         "metges": {
@@ -170,7 +170,7 @@ var gameData = {
         "pressupost": {
             "low": {
                 "headline": "Forat al pressupost",
-                "reason": "Tens a Catalunya endeutada 2 dècades per culpa d'haver finançat dany corporatiu capficant els grans servidors, no heu deixat calers ni pels cirurgians i t'acusen penalment de desviament."
+                "reason": "Has deixat Catalunya endeutada durant dues dècades per haver finançat interessos de grans empreses i afavorit els de dalt. No heu deixat diners ni per als cirurgians, i a sobre t’acusen penalment de desviament de fons."
             },
             "high": {
                 "headline": "Estalvi excessiu, oportunitat perduda",
@@ -179,18 +179,18 @@ var gameData = {
         },
         "mediAmbient": {
             "low": {
-                "headline": "La IA s'ho Ha Begut Tot. Judici Climàtic",
-                "reason": "Evaporació sense escrúpols i ús massiu d'aire condicionat. El Model algorítmic s'emporta tota l'energia de primària i aigua d'un poble sencer, provocant denúncies ciutadanes massives en temps de sequera de no retorn."
+                "headline": "La IA s'ho ha begut tot. Judici Climàtic",
+                "reason": "El model s'emporta tota l'energia de primària i aigua d'un poble sencer, provocant denúncies ciutadanes massives en temps de sequera de no retorn."
             },
             "high": {
                 "headline": "Eficiència extrema, sanitat lenta",
-                "reason": "Per assegurar la petjada 0 has degradat completament la capacitat computacional diagnòstica cap a respostes que tringuen 48h menystenint salvaments greus d'urgències constants."
+                "reason": "Per assegurar la petjada 0 has degradat completament la capacitat computacional diagnòstica cap a respostes que tringuen 48h inclòs per temes greus d'urgències."
             }
         },
         "SUCCESS": {
             "win": {
                 "headline": "Jubilació d'Honor i Mandat Complet",
-                "reason": "Has aconseguit completar el teu mandat de 16 decisions sense que el sistema col·lapsi. Et retires amb honors per deixar pas a una nova generació de gestors, havent establert les bases de la IA a Catalunya."
+                "reason": "Has aconseguit completar el teu mandat de 16 anys sense que el sistema col·lapsi. El bé sovint es troba en els punts intermedis, no pas en els extrems, i amb el teu govern has establert les bases de la IA sanitaria a Catalunya."
             }
         }
     }

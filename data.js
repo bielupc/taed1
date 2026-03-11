@@ -150,10 +150,10 @@ var gameData = {
         "pacients": {
             "low": {
                 "headline": "Pacients sense confiaça, model rebutjat",
-                "reason": "Els ciutadans han perdut tota la confiança en la sanitat algorítmica. Et destitueixen després d'una onada de desempadronaments digitals mèdics."
+                "reason": "Els ciutadans han perdut tota la confiança en la sanitat algorítmica. Entre decisions automatitzades i errors difícils d'explicar, la sanitat algorítmica ha acabat fent més por que servei. Et fan fora després d'una allau de queixes."
             },
             "high": {
-                "headline": "Aïllament Digital, Paràlisi i Estancament",
+                "headline": "Excés de protecció, sistema bloquejat",
                 "reason": "Has protegit tantissim els pacients fins a extrems inversemblants que no es pot creuar ni un sol tipus de raonament a cap IA. Atur d'innovació ineficaç absolut."
             }
         },
@@ -163,18 +163,18 @@ var gameData = {
                 "reason": "Els professionals et bloquegen la conselleria negant-se a emprar sistemes robòtics cècs que van contra el bon judici sanitari humà de tota la vida."
             },
             "high": {
-                "headline": "Sexe Maquinal: Els Metges perden el Criteri al Rerevisor",
-                "reason": "Dependència absoluta; per culpa de que tot ho feien les teves pantalles els facultatius obliden el criteri, en fallar una connexió 12 minuts han hagut errors de diagnòstic letals sense precedència."
+                "headline": "Dependència total de les màquines",
+                "reason": "Els metges s'han acostumat tant als assistents digitals que ja no saben treballar sense ells. Quan el sistema cau, encara que sigui uns minuts, els errors es multipliquen."
             }
         },
         "pressupost": {
             "low": {
-                "headline": "Bancarrota Pública per Software Il·limitat",
+                "headline": "Forat al pressupost",
                 "reason": "Tens a Catalunya endeutada 2 dècades per culpa d'haver finançat dany corporatiu capficant els grans servidors, no heu deixat calers ni pels cirurgians i t'acusen penalment de desviament."
             },
             "high": {
-                "headline": "La Mà a la Caixa i Model No Executat",
-                "reason": "Amb l'afany estalviador vas aturar tot canvi de modernitat a la Sanitat Pública perdent gran oportunitat d'estat de Benestar al S-XX2 per evitar el tall climàtic. Els diners reposen però tu surts del govern."
+                "headline": "Estalvi excessiu, oportunitat perduda",
+                "reason": "Per no gastar massa has frenat projectes clau. El sistema aguanta, però Catalunya queda enrere en modernització i et passen factura políticament."
             }
         },
         "mediAmbient": {
@@ -183,8 +183,8 @@ var gameData = {
                 "reason": "Evaporació sense escrúpols i ús massiu d'aire condicionat. El Model algorítmic s'emporta tota l'energia de primària i aigua d'un poble sencer, provocant denúncies ciutadanes massives en temps de sequera de no retorn."
             },
             "high": {
-                "headline": "Medicina Lenta d'Autarquies Biodegradables",
-                "reason": "Per assegurar la petjada 0 has degradat completament la capacitat computacional diagnòstica cap a respostes que tringuen 48h menystenint salvaments greus d'urgències constants. Extremisme considerat perillós ineficàcia."
+                "headline": "Eficiència extrema, sanitat lenta",
+                "reason": "Per assegurar la petjada 0 has degradat completament la capacitat computacional diagnòstica cap a respostes que tringuen 48h menystenint salvaments greus d'urgències constants."
             }
         },
         "SUCCESS": {

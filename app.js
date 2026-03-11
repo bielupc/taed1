@@ -4,12 +4,33 @@
 
 // El contingut de cartes, text i gameOvers s'agafa de la variable global "gameData", arxiu data.js inclòs al DOM
 
+// Supabase configuration
+// TODO: Replace with your actual Supabase project details from https://supabase.com
+// 1. Get SUPABASE_URL from Project Settings → API → Project URL
+// 2. Get SUPABASE_ANON_KEY from Project Settings → API → Project API keys → anon public
+const SUPABASE_URL = 'https://mkjzgazwxmicshjpzunj.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_-Of2XplTN06GbkJWQCrlgA_Agu-B9DD';
+let supabaseClient = null;
+
+// Initialize Supabase client when available
+if (typeof window.supabase !== 'undefined') {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+}
+
 let stats = { pacients: 50, metges: 50, pressupost: 50, mediAmbient: 50 };
 
 let currentIndex = 0;
 let shuffledDeck = [];
 
 let gameOver = false;
+
+// Track all decisions made during the game
+let decisionsHistory = [];
+
+// Mobile double-tap functionality
+let isTouchDevice = false;
+let previewedButton = null; // Track which button is currently showing preview ('left', 'right', or null)
+let mobileHintShown = false; // Track if hint has been shown
 
 // DOM variables
 const screenIntro = document.getElementById('screen-intro');
@@ -125,6 +146,14 @@ function renderCard() {
     turnNum.textContent = currentIndex + 1;
 
     clearImpactPreview();
+    previewedButton = null; // Reset preview state for new card
+    btnLeft.classList.remove('previewing');
+    btnRight.classList.remove('previewing');
+
+    // Show mobile hint on first card
+    if (currentIndex === 0) {
+        showMobileHint();
+    }
 
     // resetejar animacions de la carta visuals
     cardEl.style.transform = '';
@@ -149,6 +178,13 @@ function choose(direction) {
     const impact = direction === 'left' ? c.leftImpact : c.rightImpact;
     const label = direction === 'left' ? c.leftLabel : c.rightLabel;
 
+    // Track this decision
+    decisionsHistory.push({
+        turn: currentIndex + 1,
+        character: c.character,
+        decision: direction, // 'left' or 'right'
+        label: label
+    });
 
     applyImpact(impact);
     clearImpactPreview();
@@ -169,8 +205,72 @@ function choose(direction) {
 }
 
 // Controls
-btnLeft.addEventListener('click', () => choose('left'));
-btnRight.addEventListener('click', () => choose('right'));
+// Detect if device supports touch
+window.addEventListener('touchstart', function detectTouch() {
+    isTouchDevice = true;
+    window.removeEventListener('touchstart', detectTouch);
+}, { passive: true });
+
+function showMobileHint() {
+    if (isTouchDevice && !mobileHintShown) {
+        const hint = document.getElementById('mobile-hint');
+        if (hint) {
+            hint.classList.add('visible');
+        }
+    }
+}
+
+function hideMobileHint() {
+    if (!mobileHintShown) {
+        mobileHintShown = true;
+        const hint = document.getElementById('mobile-hint');
+        if (hint) {
+            setTimeout(() => {
+                hint.classList.remove('visible');
+            }, 300);
+        }
+    }
+}
+
+btnLeft.addEventListener('click', () => {
+    if (isTouchDevice) {
+        hideMobileHint();
+        // On mobile: first click shows preview, second click executes
+        if (previewedButton === 'left') {
+            choose('left');
+            previewedButton = null;
+            btnLeft.classList.remove('previewing');
+        } else {
+            previewedButton = 'left';
+            showImpactPreview(getImpactPreviewData(currentIndex, 'left'));
+            btnLeft.classList.add('previewing');
+            btnRight.classList.remove('previewing');
+        }
+    } else {
+        // On desktop: single click executes immediately
+        choose('left');
+    }
+});
+
+btnRight.addEventListener('click', () => {
+    if (isTouchDevice) {
+        hideMobileHint();
+        // On mobile: first click shows preview, second click executes
+        if (previewedButton === 'right') {
+            choose('right');
+            previewedButton = null;
+            btnRight.classList.remove('previewing');
+        } else {
+            previewedButton = 'right';
+            showImpactPreview(getImpactPreviewData(currentIndex, 'right'));
+            btnRight.classList.add('previewing');
+            btnLeft.classList.remove('previewing');
+        }
+    } else {
+        // On desktop: single click executes immediately
+        choose('right');
+    }
+});
 
 // Usar theDeck per agafar bé
 function getImpactPreviewData(index, direction) {
@@ -181,15 +281,28 @@ function getImpactPreviewData(index, direction) {
     return null;
 }
 
-btnLeft.addEventListener('mouseenter', () => { showImpactPreview(getImpactPreviewData(currentIndex, 'left')); });
-btnLeft.addEventListener('mouseleave', clearImpactPreview);
-btnLeft.addEventListener('touchstart', () => { showImpactPreview(getImpactPreviewData(currentIndex, 'left')); }, { passive: true });
-btnLeft.addEventListener('touchend', clearImpactPreview, { passive: true });
+// Desktop hover effects (only apply on non-touch devices)
+btnLeft.addEventListener('mouseenter', () => {
+    if (!isTouchDevice) {
+        showImpactPreview(getImpactPreviewData(currentIndex, 'left'));
+    }
+});
+btnLeft.addEventListener('mouseleave', () => {
+    if (!isTouchDevice) {
+        clearImpactPreview();
+    }
+});
 
-btnRight.addEventListener('mouseenter', () => { showImpactPreview(getImpactPreviewData(currentIndex, 'right')); });
-btnRight.addEventListener('mouseleave', clearImpactPreview);
-btnRight.addEventListener('touchstart', () => { showImpactPreview(getImpactPreviewData(currentIndex, 'right')); }, { passive: true });
-btnRight.addEventListener('touchend', clearImpactPreview, { passive: true });
+btnRight.addEventListener('mouseenter', () => {
+    if (!isTouchDevice) {
+        showImpactPreview(getImpactPreviewData(currentIndex, 'right'));
+    }
+});
+btnRight.addEventListener('mouseleave', () => {
+    if (!isTouchDevice) {
+        clearImpactPreview();
+    }
+});
 
 window.addEventListener('keydown', e => {
     if (gameOver) return;
@@ -205,8 +318,58 @@ window.addEventListener('keydown', e => {
     }
 });
 
+// Save game results to Supabase
+async function saveResultsToSupabase(failReason) {
+    // Skip if Supabase is not configured
+    if (!supabaseClient || SUPABASE_URL.includes('your-project')) {
+        console.log('Supabase not configured - skipping save');
+        return false;
+    }
+
+    try {
+        const gameData = {
+            turns_completed: currentIndex,
+            fail_reason: failReason,
+            decisions: decisionsHistory,
+            final_stats: {
+                pacients: stats.pacients,
+                metges: stats.metges,
+                pressupost: stats.pressupost,
+                mediAmbient: stats.mediAmbient
+            }
+        };
+
+        const { data, error } = await supabaseClient
+            .from('game_results')
+            .insert([gameData]);
+
+        if (error) {
+            console.error('Error saving to Supabase:', error);
+            return false;
+        }
+        
+        console.log('✓ Results saved successfully');
+        return true;
+    } catch (err) {
+        console.error('Failed to save:', err);
+        return false;
+    }
+}
+
 function endGame(whichBar, level) {
     gameOver = true;
+    
+    // Determine fail reason and save to Supabase
+    let failReason;
+    if (whichBar === 'SUCCESS') {
+        failReason = 'success';
+    } else {
+        failReason = `${whichBar}_${level}`; // e.g., "pacients_low", "metges_high"
+    }
+    
+    // Save results to Supabase (async, doesn't block UI)
+    saveResultsToSupabase(failReason);
+    
     let data = { headline: "Crisi General", reason: "Destituït" };
 
     // Obtenir resultat final de data.js segons el "GameOver" donat
@@ -257,6 +420,8 @@ document.getElementById('btn-start').addEventListener('click', () => {
     currentIndex = 0;
 
     gameOver = false;
+    mobileHintShown = false; // Reset hint for new game
+    decisionsHistory = []; // Reset decisions tracking
 
     // Assegurar que hi ha dades per fer la barreja inicial
     if (window.gameData) {

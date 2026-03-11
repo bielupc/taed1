@@ -7,10 +7,12 @@
     <title>El Mandat d'IA en Salut</title>
     <meta name="description"
         content="Joc interactiu sobre l'ètica d'implementar Intel·ligència Artificial a la sanitat pública.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='20' y='20' width='60' height='60' rx='8' fill='none' stroke='%2300d2ff' stroke-width='4'/><rect x='45' y='35' width='10' height='30' fill='%2300d2ff' rx='2'/><rect x='35' y='45' width='30' height='10' fill='%2300d2ff' rx='2'/><line x1='30' y1='20' x2='30' y2='10' stroke='%2300d2ff' stroke-width='3'/><circle cx='30' cy='7' r='3' fill='%2300d2ff'/><line x1='50' y1='20' x2='50' y2='10' stroke='%2300d2ff' stroke-width='3'/><circle cx='50' cy='7' r='3' fill='%2300d2ff'/><line x1='70' y1='20' x2='70' y2='10' stroke='%2300d2ff' stroke-width='3'/><circle cx='70' cy='7' r='3' fill='%2300d2ff'/><line x1='30' y1='80' x2='30' y2='90' stroke='%2300d2ff' stroke-width='3'/><circle cx='30' cy='93' r='3' fill='%2300d2ff'/><line x1='50' y1='80' x2='50' y2='90' stroke='%2300d2ff' stroke-width='3'/><circle cx='50' cy='93' r='3' fill='%2300d2ff'/><line x1='70' y1='80' x2='70' y2='90' stroke='%2300d2ff' stroke-width='3'/><circle cx='70' cy='93' r='3' fill='%2300d2ff'/><line x1='20' y1='35' x2='10' y2='35' stroke='%2300d2ff' stroke-width='3'/><circle cx='7' cy='35' r='3' fill='%2300d2ff'/><line x1='20' y1='50' x2='10' y2='50' stroke='%2300d2ff' stroke-width='3'/><circle cx='7' cy='50' r='3' fill='%2300d2ff'/><line x1='20' y1='65' x2='10' y2='65' stroke='%2300d2ff' stroke-width='3'/><circle cx='7' cy='65' r='3' fill='%2300d2ff'/><line x1='80' y1='35' x2='90' y2='35' stroke='%2300d2ff' stroke-width='3'/><circle cx='93' cy='35' r='3' fill='%2300d2ff'/><line x1='80' y1='50' x2='90' y2='50' stroke='%2300d2ff' stroke-width='3'/><circle cx='93' cy='50' r='3' fill='%2300d2ff'/><line x1='80' y1='65' x2='90' y2='65' stroke='%2300d2ff' stroke-width='3'/><circle cx='93' cy='65' r='3' fill='%2300d2ff'/></svg>">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css?v=2">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -20,12 +22,45 @@
         <div id="screen-intro" class="screen active">
             <div class="intro-content">
                 <div class="intro-icon">
-                    <svg viewBox="0 0 80 80" fill="none" stroke-width="2.5" stroke-linecap="round">
-                        <rect x="15" y="10" width="50" height="60" rx="6" stroke="#94a3b8" />
-                        <circle cx="40" cy="35" r="10" stroke="#00d2ff" />
-                        <line x1="40" y1="45" x2="40" y2="55" stroke="#00d2ff" />
-                        <path d="M25,55 L55,55" stroke="#ff0076" stroke-width="2" />
-                        <path d="M30,65 L50,65" stroke="#10b981" stroke-width="2" />
+                    <svg viewBox="0 0 100 100" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <!-- Main chip body -->
+                        <rect x="25" y="25" width="50" height="50" rx="8" stroke="#00d2ff" stroke-width="3" />
+                        
+                        <!-- Medical cross in center -->
+                        <rect x="47" y="38" width="6" height="24" fill="#00d2ff" rx="1" />
+                        <rect x="38" y="47" width="24" height="6" fill="#00d2ff" rx="1" />
+                        
+                        <!-- Circuit connections - Top -->
+                        <line x1="35" y1="25" x2="35" y2="15" stroke="#00d2ff" />
+                        <circle cx="35" cy="10" r="3" stroke="#00d2ff" fill="none" />
+                        <line x1="50" y1="25" x2="50" y2="15" stroke="#00d2ff" />
+                        <circle cx="50" cy="10" r="3" stroke="#00d2ff" fill="none" />
+                        <line x1="65" y1="25" x2="65" y2="15" stroke="#00d2ff" />
+                        <circle cx="65" cy="10" r="3" stroke="#00d2ff" fill="none" />
+                        
+                        <!-- Circuit connections - Bottom -->
+                        <line x1="35" y1="75" x2="35" y2="85" stroke="#00d2ff" />
+                        <circle cx="35" cy="90" r="3" stroke="#00d2ff" fill="none" />
+                        <line x1="50" y1="75" x2="50" y2="85" stroke="#00d2ff" />
+                        <circle cx="50" cy="90" r="3" stroke="#00d2ff" fill="none" />
+                        <line x1="65" y1="75" x2="65" y2="85" stroke="#00d2ff" />
+                        <circle cx="65" cy="90" r="3" stroke="#00d2ff" fill="none" />
+                        
+                        <!-- Circuit connections - Left -->
+                        <line x1="25" y1="38" x2="15" y2="38" stroke="#00d2ff" />
+                        <circle cx="10" cy="38" r="3" stroke="#00d2ff" fill="none" />
+                        <line x1="25" y1="50" x2="15" y2="50" stroke="#00d2ff" />
+                        <circle cx="10" cy="50" r="3" stroke="#00d2ff" fill="none" />
+                        <line x1="25" y1="62" x2="15" y2="62" stroke="#00d2ff" />
+                        <circle cx="10" cy="62" r="3" stroke="#00d2ff" fill="none" />
+                        
+                        <!-- Circuit connections - Right -->
+                        <line x1="75" y1="38" x2="85" y2="38" stroke="#00d2ff" />
+                        <circle cx="90" cy="38" r="3" stroke="#00d2ff" fill="none" />
+                        <line x1="75" y1="50" x2="85" y2="50" stroke="#00d2ff" />
+                        <circle cx="90" cy="50" r="3" stroke="#00d2ff" fill="none" />
+                        <line x1="75" y1="62" x2="85" y2="62" stroke="#00d2ff" />
+                        <circle cx="90" cy="62" r="3" stroke="#00d2ff" fill="none" />
                     </svg>
                 </div>
 
@@ -215,6 +250,8 @@
                         <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
                     </svg></div>
             </div>
+            <div class="mobile-hint" id="mobile-hint">Toca una opció per veure l'impacte, toca de nou per decidir</div>
+            </div>
         </div>
 
         <!-- PANTALLA GAME OVER -->
@@ -229,7 +266,7 @@
                     <div class="end-bars" id="end-bars"></div>
                 </div>
 
-                <a href="https://forms.gle/PLACEHOLDER" target="_blank" class="btn-survey" id="btn-survey">
+                <a href="https://tally.so/r/kdAg2Z" target="_blank" class="btn-survey" id="btn-survey">
                     <span style="display:flex;align-items:center;justify-content:center;gap:8px;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

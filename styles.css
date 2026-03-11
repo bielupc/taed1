@@ -27,7 +27,6 @@ body {
     height: 100dvh;
     min-height: -webkit-fill-available;
     overflow: hidden;
-    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 body {
@@ -247,13 +246,18 @@ body {
 
 /* Bars */
 .bars-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
     display: flex;
     justify-content: space-around;
-    padding: 15px 10px 10px;
+    padding: calc(15px + env(safe-area-inset-top)) 10px 10px;
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
-    flex-shrink: 0;
+    z-index: 100;
 }
 
 .bar-item {
@@ -335,7 +339,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 15px 20px 20px;
+    padding: calc(80px + env(safe-area-inset-top)) 20px 20px;
     position: relative;
     overflow-y: auto;
     min-height: 0;
@@ -777,7 +781,7 @@ body {
 
     /* Game screen adjustments */
     .bars-container {
-        padding: 12px 8px 8px;
+        padding: calc(12px + env(safe-area-inset-top)) 8px 8px;
     }
 
     .bar-icon {
@@ -794,7 +798,7 @@ body {
     }
 
     .game-area {
-        padding: 12px 15px 15px;
+        padding: calc(75px + env(safe-area-inset-top)) 15px 15px;
     }
 
     .turn-counter {
@@ -926,7 +930,7 @@ body {
 
     /* Game screen for very small screens */
     .bars-container {
-        padding: 10px 5px 8px;
+        padding: calc(10px + env(safe-area-inset-top)) 5px 8px;
     }
 
     .bar-item {
@@ -951,7 +955,7 @@ body {
     }
 
     .game-area {
-        padding: 10px 12px 12px;
+        padding: calc(70px + env(safe-area-inset-top)) 12px 12px;
     }
 
     .card {
@@ -1098,7 +1102,7 @@ body {
     }
 
     .game-area {
-        padding: 10px 15px 12px;
+        padding: calc(70px + env(safe-area-inset-top)) 15px 12px;
     }
 
     .turn-counter {
@@ -1170,7 +1174,7 @@ body {
     }
 
     .game-area {
-        padding: 8px 15px 12px;
+        padding: calc(65px + env(safe-area-inset-top)) 15px 12px;
     }
 
     .card {

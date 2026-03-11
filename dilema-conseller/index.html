@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>El Mandat d'IA en Salut</title>
+    <meta name="description"
+        content="Joc interactiu sobre l'ètica d'implementar Intel·ligència Artificial a la sanitat pública.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=2">
+</head>
+
+<body>
+    <div id="app">
+
+        <!-- PANTALLA INTRO -->
+        <div id="screen-intro" class="screen active">
+            <div class="intro-content">
+                <div class="intro-icon">
+                    <svg viewBox="0 0 80 80" fill="none" stroke-width="2.5" stroke-linecap="round">
+                        <rect x="15" y="10" width="50" height="60" rx="6" stroke="#94a3b8" />
+                        <circle cx="40" cy="35" r="10" stroke="#00d2ff" />
+                        <line x1="40" y1="45" x2="40" y2="55" stroke="#00d2ff" />
+                        <path d="M25,55 L55,55" stroke="#ff0076" stroke-width="2" />
+                        <path d="M30,65 L50,65" stroke="#10b981" stroke-width="2" />
+                    </svg>
+                </div>
+
+
+                <h1>El Mandat</h1>
+                <p class="intro-desc">
+                    Acabes de ser nomenat/da <strong>Conseller/a de Salut</strong>.
+                    <br><br>
+                    Gestiona la IA a la sanitat equilibrant quatre sectors clau. Si un sector arriba a l'extrem (màxim o
+                    mínim beneficiat), el sistema s'esfondra i tu amb ell.
+                </p>
+                <ul class="intro-forces-list">
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                        <div class="force-text">
+                            <strong>Pacients</strong>
+                            <span>Qualitat servei, privacitat i humanització</span>
+                        </div>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" />
+                            <path d="M12 8v8" />
+                            <path d="M8 12h8" />
+                        </svg>
+                        <div class="force-text">
+                            <strong>Metges</strong>
+                            <span>Autonomia, càrrega de treball i transparència</span>
+                        </div>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 10h12" />
+                            <path d="M4 14h9" />
+                            <path d="M19 6a7.7 7.7 0 0 0-5.2-2A7.9 7.9 0 0 0 6 12c0 4.4 3.5 8 7.8 8 2 0 3.8-.8 5.2-2" />
+                        </svg>
+                        <div class="force-text">
+                            <strong>Pressupost</strong>
+                            <span>Viabilitat i gestió de fons públics</span>
+                        </div>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+                            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+                        </svg>
+                        <div class="force-text">
+                            <strong>Medi Ambient</strong>
+                            <span>Cost material, energètic i social</span>
+                        </div>
+                    </li>
+                </ul>
+
+                <button id="btn-start" class="btn-start">Acceptar el Càrrec</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA JOC -->
+        <div id="screen-game" class="screen hidden">
+            <!-- Barres superiors -->
+            <div class="bars-container">
+                <div class="bar-item" id="bar-pacients">
+                    <div class="bar-icon">
+                        <!-- Pacients (persona) SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" id="fill-pacients"></div>
+                    </div>
+                    <span class="bar-label">Pacients</span>
+                </div>
+                <div class="bar-item" id="bar-metges">
+                    <div class="bar-icon">
+                        <!-- Metges (creu mèdica en un quadrat) SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" />
+                            <path d="M12 8v8" />
+                            <path d="M8 12h8" />
+                        </svg>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" id="fill-metges"></div>
+                    </div>
+                    <span class="bar-label">Metges</span>
+                </div>
+                <div class="bar-item" id="bar-pressupost">
+                    <div class="bar-icon">
+                        <!-- Pressupost (Euro) SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 10h12" />
+                            <path d="M4 14h9" />
+                            <path d="M19 6a7.7 7.7 0 0 0-5.2-2A7.9 7.9 0 0 0 6 12c0 4.4 3.5 8 7.8 8 2 0 3.8-.8 5.2-2" />
+                        </svg>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" id="fill-pressupost"></div>
+                    </div>
+                    <span class="bar-label">Pressupost</span>
+                </div>
+                <div class="bar-item" id="bar-mediAmbient">
+                    <div class="bar-icon">
+                        <!-- Medi Ambient (fulla) SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+                            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+                        </svg>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" id="fill-mediAmbient"></div>
+                    </div>
+                    <span class="bar-label">Medi Ambient</span>
+                </div>
+            </div>
+
+            <!-- Zona de la carta i controls -->
+            <div class="game-area">
+                <div class="turn-counter">Dia <span id="turn-num">1</span> de mandat</div>
+
+                <div class="card" id="card">
+                    <div class="card-character" id="card-character">Assessor</div>
+                    <div class="card-text" id="card-text">Text de la carta...</div>
+                </div>
+
+                <!-- Botons d'acció directes -->
+                <div class="action-buttons">
+                    <button id="btn-swipe-left" class="action-btn left">
+                        <span class="btn-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="m15 18-6-6 6-6" />
+                            </svg>
+                        </span>
+                        <span id="label-left" class="btn-label-text">Opció A</span>
+                    </button>
+                    <button id="btn-swipe-right" class="action-btn right">
+                        <span class="btn-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="m9 18 6-6-6-6" />
+                            </svg>
+                        </span>
+                        <span id="label-right" class="btn-label-text">Opció B</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Indicadors de preview amb petites icones svg replicades per feedback visual abstracte -->
+            <div class="impact-preview" id="impact-preview">
+                <div class="impact-dot" id="ip-pacients"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg></div>
+                <div class="impact-dot" id="ip-metges"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <path d="M12 8v8" />
+                        <path d="M8 12h8" />
+                    </svg></div>
+                <div class="impact-dot" id="ip-pressupost"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 10h12" />
+                        <path d="M4 14h9" />
+                        <path d="M19 6a7.7 7.7 0 0 0-5.2-2A7.9 7.9 0 0 0 6 12c0 4.4 3.5 8 7.8 8 2 0 3.8-.8 5.2-2" />
+                    </svg></div>
+                <div class="impact-dot" id="ip-mediAmbient"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+                        <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+                    </svg></div>
+            </div>
+        </div>
+
+        <!-- PANTALLA GAME OVER -->
+        <div id="screen-end" class="screen hidden">
+            <div class="end-content">
+                <h2 class="end-title" id="end-title">Termini de les teves Funcions</h2>
+                <div class="end-headline" id="end-headline">"Titular de premsa general de destitució"</div>
+                <p class="end-reason" id="end-reason">Raó de la teva sortida...</p>
+
+                <div class="end-stats">
+                    <h3>Perfil ètic de la teva gestió</h3>
+                    <div class="end-bars" id="end-bars"></div>
+                </div>
+
+                <a href="https://forms.gle/PLACEHOLDER" target="_blank" class="btn-survey" id="btn-survey">
+                    <span style="display:flex;align-items:center;justify-content:center;gap:8px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+                            <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                            <path d="m9 15 2 2 4-4" />
+                        </svg>
+                        Formulari introductori sessió
+                    </span>
+                </a>
+                <button class="btn-restart" onclick="location.reload()">Reintentar amb un nou govern</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background animat -->
+    <div class="bg-blobs">
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div class="blob b3"></div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

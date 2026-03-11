@@ -29,7 +29,7 @@ var gameData = {
         },
         {
             "character": "Cap de Dermatologia",
-            "text": "La nostra IA és excel·lent pel 80% de la població catalana, però no té gaires dades d'efectes a la pele en minories ètniques. Entrenar-la amb dades externes ens portarà 2 anys de retard i milions d'euros. Esperem que sigui perfecta per a tothom?",
+            "text": "La nostra IA és excel·lent pel 80% de la població catalana, però no té gaires dades d'efectes a la pell en minories ètniques. Entrenar-la amb dades externes ens portarà 2 anys de retard i milions d'euros. Esperem que sigui perfecta per a tothom?",
             "leftLabel": "Esperar a la perfecció",
             "rightLabel": "Desplegar-la ja",
             "leftImpact": { "pacients": 10, "metges": -12, "pressupost": -15, "mediAmbient": 5 },
